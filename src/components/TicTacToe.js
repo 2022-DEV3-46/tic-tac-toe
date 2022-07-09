@@ -5,11 +5,17 @@ import { useState } from 'react';
 function TicTacToe() {
 
   const [board, setBoard] = useState(Array(Constants.TOTAL_SQUARES).fill(''));
+  const [currentPlayer, changeCurrentPlayer] = useState(Constants.PLAYER_ONE_SYMBOL);
 
   const playedOn = (position) => {
     const squares = board.slice();
-    squares[position] = Constants.PLAYER_ONE_SYMBOL;
+    squares[position] = currentPlayer;
     setBoard(squares);
+    changeCurrentPlayer(togglePlayer());
+  }
+
+  const togglePlayer = () => {
+    return currentPlayer === Constants.PLAYER_ONE_SYMBOL ? Constants.PLAYER_TWO_SYMBOL : Constants.PLAYER_ONE_SYMBOL;
   }
 
   const renderBoard = () => {
