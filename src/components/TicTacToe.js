@@ -1,21 +1,22 @@
 import '../app.css';
 import { Constants } from '../constants/Constants';
 import { useState } from 'react';
+import Status from './Status';
 
 function TicTacToe() {
 
   const [board, setBoard] = useState(Array(Constants.TOTAL_SQUARES).fill(''));
-  const [currentPlayer, changeCurrentPlayer] = useState(Constants.PLAYER_ONE_SYMBOL);
+  const [currentPlayer, changeCurrentPlayer] = useState(Constants.PLAYER_ONE);
 
   const playedOn = (position) => {
     const squares = board.slice();
-    squares[position] = currentPlayer;
+    squares[position] = currentPlayer.SYMBOL;
     setBoard(squares);
     changeCurrentPlayer(togglePlayer());
   }
 
   const togglePlayer = () => {
-    return currentPlayer === Constants.PLAYER_ONE_SYMBOL ? Constants.PLAYER_TWO_SYMBOL : Constants.PLAYER_ONE_SYMBOL;
+    return currentPlayer === Constants.PLAYER_ONE ? Constants.PLAYER_TWO : Constants.PLAYER_ONE;
   }
 
   const renderBoard = () => {
@@ -45,6 +46,9 @@ function TicTacToe() {
         {Constants.HEADER}
       </header>
       {renderBoard()}
+      <div className='status'>
+        <Status currentPlayer={currentPlayer} />
+      </div>
     </div>
   );
 }
