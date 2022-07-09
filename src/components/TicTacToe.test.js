@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import TicTacToe from './TicTacToe';
-import { Constants } from '../constants/TestConstants';
+import { Constants, Positions } from '../constants/TestConstants';
 
 describe('TicTacToe component', () => {
 
@@ -21,6 +21,22 @@ describe('TicTacToe component', () => {
     expect(squares).toHaveLength(Constants.TOTAL_SQUARES);
     squares.forEach((square) => {
       expect(square.textContent).toBe('');
+    })
+  });
+
+  test('Should show X when player one plays on a square', () => {
+    render(<TicTacToe />);
+
+    const squares = screen.queryAllByTestId('square');
+
+    fireEvent.click(squares[Positions.TOP_LEFT_SQUARE]);
+
+    squares.forEach((square, position) => {
+      if (position === Positions.TOP_LEFT_SQUARE) {
+        expect(square.textContent).toBe(Constants.PLAYER_ONE_SYMBOL);
+      } else {
+        expect(square.textContent).toBe('');
+      }
     })
   });
 
