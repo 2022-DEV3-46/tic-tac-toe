@@ -12,3 +12,28 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: blue;
+  width: 277px;
+  height: 277px;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+}
+
+.square {
+  width: 90px;
+  height: 90px;
+  border: 1px solid gray;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  line-height: 90px;
+  font-size: 80px;
+  color: #fff;
+  font-weight: bold;
+}

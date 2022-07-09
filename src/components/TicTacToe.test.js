@@ -13,4 +13,15 @@ describe('TicTacToe component', () => {
     expect(headerElement.textContent).toBe(Constants.HEADER);
   });
 
+  test('Should have empty nine squares in the board when game starts', () => {
+    render(<TicTacToe />);
+
+    const squares = screen.queryAllByTestId('square');
+
+    expect(squares).toHaveLength(Constants.TOTAL_SQUARES);
+    squares.forEach((square) => {
+      expect(square.textContent).toBe('');
+    })
+  });
+
 });
