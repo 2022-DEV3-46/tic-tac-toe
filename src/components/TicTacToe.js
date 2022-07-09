@@ -24,13 +24,14 @@ function TicTacToe() {
         {
           board.map((value, position) => {
             return (
-              <span
+              <button
                 key={position}
                 data-testid='square'
                 className='square'
-                onClick={() => playedOn(position)}>
+                onClick={() => playedOn(position)}
+                disabled={value}>
                 {value}
-              </span>
+              </button>
             )
           }
           )
