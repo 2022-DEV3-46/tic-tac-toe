@@ -22,7 +22,8 @@ function Status({ currentPlayer, board, onGameEnd }) {
     const hasWinner = () => {
         return isTopRowPlayedBySamePlayer() ||
             isMiddleRowPlayedBySamePlayer() ||
-            isBottomRowPlayedBySamePlayer();
+            isBottomRowPlayedBySamePlayer() ||
+            isLeftColumnPlayedBySamePlayer();
     }
 
     const isTopRowPlayedBySamePlayer = () => {
@@ -35,6 +36,10 @@ function Status({ currentPlayer, board, onGameEnd }) {
 
     const isBottomRowPlayedBySamePlayer = () => {
         return isSquaresPlayedBySamePlayer(Position.BOTTOM_ROW_SQUARES);
+    };
+
+    const isLeftColumnPlayedBySamePlayer = () => {
+        return isSquaresPlayedBySamePlayer(Position.LEFT_COLUMN_SQUARES);
     };
 
     const isSquaresPlayedBySamePlayer = (positions) => {
