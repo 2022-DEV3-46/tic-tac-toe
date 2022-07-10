@@ -17,13 +17,17 @@ function Status({ currentPlayer, board, onGameEnd }) {
             return;
         }
 
-        if (board.every((value) => { return value })) {
+        if (isBoardFull()) {
             setStatusMessage(Constants.GAME_IS_DRAW);
             return;
         }
-        
+
         setStatusMessage(currentPlayer.NAME + Constants.TURN);
     };
+
+    const isBoardFull = () => {
+        return board.every((value) => { return value });
+    }
 
     const hasWinner = () => {
         return isAnyRowPlayedBySamePlayer() ||
