@@ -21,7 +21,8 @@ export const Position = {
     LEFT_COLUMN_SQUARES: [0, 3, 6],
     MIDDLE_COLUMN_SQUARES: [1, 4, 7],
     RIGHT_COLUMN_SQUARES: [2, 5, 8],
-    LEFT_TOP_DIAGONAL_SQUARES: [0, 4, 8]
+    LEFT_TOP_DIAGONAL_SQUARES: [0, 4, 8],
+    RIGHT_TOP_DIAGONAL_SQUARES: [2, 4, 6]
 }
 
 export const Player_Name = {
