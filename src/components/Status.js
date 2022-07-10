@@ -4,39 +4,45 @@ import PropTypes from 'prop-types';
 
 function Status({ currentPlayer, board, onGameEnd }) {
     const [statusMessage, setStatusMessage] = useState('');
+    const [winner, setWinner] = useState('');
 
     useEffect(() => {
         updateStatus();
     });
 
     const updateStatus = () => {
-        if (isTopRowPlayedBySamePlayer()) {
-            setStatusMessage(Player_Name[getWinningPlayerSymbol(board, Position.TOP_ROW_SQUARES)] + Constants.WON);
+        if (hasWinner()) {
+            setStatusMessage(winner + Constants.WON);
             onGameEnd(true);
             return;
         }
-
-        if (isMiddleRowPlayedBySamePlayer()) {
-            setStatusMessage(Player_Name[getWinningPlayerSymbol(board, Position.MIDDLE_ROW_SQUARES)] + Constants.WON);
-            onGameEnd(true);
-            return;
-        }
-
         setStatusMessage(currentPlayer.NAME + Constants.TURN);
+    };
+
+    const hasWinner = () => {
+        return isTopRowPlayedBySamePlayer() ||
+            isMiddleRowPlayedBySamePlayer();
+    }
+
+    const isTopRowPlayedBySamePlayer = () => {
+        return isSquaresPlayedBySamePlayer(Position.TOP_ROW_SQUARES);
+    };
+
+    const isMiddleRowPlayedBySamePlayer = () => {
+        return isSquaresPlayedBySamePlayer(Position.MIDDLE_ROW_SQUARES);
+    };
+
+    const isSquaresPlayedBySamePlayer = (positions) => {
+        if (positions.map((position) => board[position])
+            .every((value, index, squares) => value && value === squares[Position.FIRST_SQUARE])) {
+            setWinner(Player_Name[getWinningPlayerSymbol(board, positions)]);
+            return true;
+        }
+        return false;
     };
 
     const getWinningPlayerSymbol = (board, winningSquares) => {
         return board[winningSquares[Position.FIRST_SQUARE]];
-    }
-
-    const isTopRowPlayedBySamePlayer = () => {
-        return Position.TOP_ROW_SQUARES.map((position) => board[position])
-            .every((value, index, squares) => value && value === squares[Position.FIRST_SQUARE]);
-    };
-
-    const isMiddleRowPlayedBySamePlayer = () => {
-        return Position.MIDDLE_ROW_SQUARES.map((position) => board[position])
-            .every((value, index, squares) => value && value === squares[Position.FIRST_SQUARE]);
     };
 
     return (
