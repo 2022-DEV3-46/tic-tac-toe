@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Constants, Position, Player_Name } from '../constants/Constants';
 import PropTypes from 'prop-types';
 
-function Status({ currentPlayer, board }) {
+function Status({ currentPlayer, board, onGameEnd }) {
+    const [statusMessage, setStatusMessage] = useState('');
+
+    useEffect(() => {
+        updateStatus();
+    });
+
     const updateStatus = () => {
         if (isTopRowPlayedBySamePlayer()) {
-            return Player_Name[getWinningPlayerSymbol(board)] + Constants.WON;
+            setStatusMessage(Player_Name[getWinningPlayerSymbol(board)] + Constants.WON);
+            onGameEnd(true);
+            return;
         }
 
-        return currentPlayer.NAME + Constants.TURN;
+        setStatusMessage(currentPlayer.NAME + Constants.TURN);
     };
 
     const getWinningPlayerSymbol = (board) => {
@@ -21,13 +29,14 @@ function Status({ currentPlayer, board }) {
     };
 
     return (
-        <label data-testid="status">{updateStatus()}</label>
+        <label data-testid="status">{statusMessage}</label>
     );
 }
 
 Status.propTypes = {
     currentPlayer: PropTypes.object.isRequired,
-    board: PropTypes.array.isRequired
+    board: PropTypes.array.isRequired,
+    onGameEnd: PropTypes.func.isRequired
 };
 
 export default Status;
