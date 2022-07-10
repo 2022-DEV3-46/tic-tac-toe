@@ -156,4 +156,16 @@ describe('TicTacToe component', () => {
 
   });
 
+  test('Should announce player one as winner when he places symbol across the middle column', () => {
+    Player_One.playOn(Positions.CENTER_RIGHT_SQUARE);
+    Player_Two.playOn(Positions.TOP_MIDDLE_SQUARE);
+    Player_One.playOn(Positions.TOP_LEFT_SQUARE);
+    Player_Two.playOn(Positions.CENTER_SQUARE);
+    Player_One.playOn(Positions.BOTTOM_RIGHT_SQUARE);
+    Player_Two.playOn(Positions.BOTTOM_MIDDLE_SQUARE);
+
+    expect(status.textContent).toBe(Constants.PLAYER_TWO_WON);
+
+  });
+
 });
