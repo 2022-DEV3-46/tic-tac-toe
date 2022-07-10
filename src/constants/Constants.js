@@ -19,7 +19,8 @@ export const Position = {
     MIDDLE_ROW_SQUARES: [3, 4, 5],
     BOTTOM_ROW_SQUARES: [6, 7, 8],
     LEFT_COLUMN_SQUARES: [0, 3, 6],
-    MIDDLE_COLUMN_SQUARES: [1, 4, 7]
+    MIDDLE_COLUMN_SQUARES: [1, 4, 7],
+    RIGHT_COLUMN_SQUARES: [2, 5, 8]
 }
 
 export const Player_Name = {
