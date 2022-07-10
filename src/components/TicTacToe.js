@@ -24,6 +24,12 @@ function TicTacToe() {
     return currentPlayer === Constants.PLAYER_ONE ? Constants.PLAYER_TWO : Constants.PLAYER_ONE;
   }
 
+  const resetGame = () => {
+    setBoard(Array(Constants.TOTAL_SQUARES).fill(''));
+    changeCurrentPlayer(Constants.PLAYER_ONE);
+    setIsGameEnded(false);
+  }
+  
   const renderBoard = () => {
     return (
       <div className='board'>
@@ -50,6 +56,7 @@ function TicTacToe() {
       <header data-testid='header' className='App-header'>
         {Constants.HEADER}
       </header>
+      <button className='restart' onClick={() => resetGame()}>Restart</button>
       {renderBoard()}
       <div className='status'>
         <Status

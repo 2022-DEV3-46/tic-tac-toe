@@ -218,4 +218,25 @@ describe('TicTacToe component', () => {
 
   });
 
+  test('Should reset game when player selects restarts', () => {
+    const restartbtn = screen.getByRole('button', { name: 'Restart' });
+
+    Player_One.playOn(Positions.TOP_LEFT_SQUARE);
+
+    squares.forEach((square, position) => {
+      if (position === Positions.TOP_LEFT_SQUARE) {
+        expect(square.textContent).toBe(Constants.PLAYER_ONE_SYMBOL);
+      } else {
+        expect(square.textContent).toBe('');
+      }
+    })
+    expect(status.textContent).toBe(Constants.PLAYER_TWO_TURN);
+    fireEvent.click(restartbtn);
+
+    squares.forEach((square) => {
+      expect(square.textContent).toBe('');
+    })
+    expect(status.textContent).toBe(Constants.PLAYER_ONE_TURN);
+  });
+
 });
