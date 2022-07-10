@@ -47,7 +47,7 @@ function TicTacToe() {
       </header>
       {renderBoard()}
       <div className='status'>
-        <Status currentPlayer={currentPlayer} />
+        <Status currentPlayer={currentPlayer} board={board} />
       </div>
     </div>
   );

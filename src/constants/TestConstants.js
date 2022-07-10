@@ -12,10 +12,16 @@ export const Constants = {
     PLAYER_TWO: {
         SYMBOL: "O",
         NAME: "Player Two"
-    }
+    },
+    EMPTY_BOARD: [...Array(9).fill('')],
+    PLAYER_ONE_WINNING_BOARD: ['X', 'X', 'X', 'O', 'O', '', '', '', ''],
+    PLAYER_ONE_WON: 'Player One Won'
 }
 
 export const Positions = {
     TOP_LEFT_SQUARE: 0,
+    TOP_MIDDLE_SQUARE: 1,
+    TOP_RIGHT_SQUARE: 2,
+    CENTER_LEFT_SQUARE: 3,
     CENTER_SQUARE: 4
 }
