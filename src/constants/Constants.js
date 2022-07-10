@@ -10,7 +10,8 @@ export const Constants = {
         NAME: "Player Two"
     },
     TURN: ' Turn',
-    WON: ' Won'
+    WON: ' Won',
+    GAME_IS_DRAW: 'Game Is Draw'
 }
 
 export const Position = {

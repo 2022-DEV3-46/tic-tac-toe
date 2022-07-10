@@ -16,6 +16,12 @@ function Status({ currentPlayer, board, onGameEnd }) {
             onGameEnd(true);
             return;
         }
+
+        if (board.every((value) => { return value })) {
+            setStatusMessage(Constants.GAME_IS_DRAW);
+            return;
+        }
+        
         setStatusMessage(currentPlayer.NAME + Constants.TURN);
     };
 

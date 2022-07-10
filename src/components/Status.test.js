@@ -32,4 +32,12 @@ describe('Status component', () => {
     expect(handleGameEnd).toHaveBeenCalled();
   });
 
+  test('Should display status when game draws', () => {
+    render(<Status currentPlayer={Constants.PLAYER_TWO} board={Constants.GAME_DRAW_BOARD} onGameEnd={handleGameEnd} />);
+    const status = screen.getByTestId('status');
+
+    expect(status).toBeInTheDocument();
+    expect(status.textContent).toEqual(Constants.GAME_IS_DRAW);
+  });
+
 });

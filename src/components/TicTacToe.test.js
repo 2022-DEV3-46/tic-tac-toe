@@ -203,4 +203,19 @@ describe('TicTacToe component', () => {
 
   });
 
+  test('Should announce game as draw when there is no winner and no square left to play', () => {
+    Player_One.playOn(Positions.CENTER_SQUARE);
+    Player_Two.playOn(Positions.BOTTOM_RIGHT_SQUARE);
+    Player_One.playOn(Positions.TOP_RIGHT_SQUARE);
+    Player_Two.playOn(Positions.TOP_MIDDLE_SQUARE);
+    Player_One.playOn(Positions.CENTER_RIGHT_SQUARE);
+    Player_Two.playOn(Positions.BOTTOM_LEFT_SQUARE);
+    Player_One.playOn(Positions.TOP_LEFT_SQUARE);
+    Player_Two.playOn(Positions.CENTER_LEFT_SQUARE);
+    Player_One.playOn(Positions.BOTTOM_MIDDLE_SQUARE);
+
+    expect(status.textContent).toBe(Constants.GAME_IS_DRAW);
+
+  });
+
 });
